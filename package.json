@@ -1,0 +1,29 @@
+{
+  "name": "pandora",
+  "version": "1.0.0",
+  "description": "WHATS IN THE BOX!?",
+  "author": "Martin Page",
+  "private": false,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@mdi/font": "^4.7.95",
+    "@nuxtjs/auth": "^4.8.5",
+    "@nuxtjs/axios": "^5.3.6",
+    "@nuxtjs/dotenv": "^1.4.0",
+    "@nuxtjs/pwa": "^3.0.0-0",
+    "buefy": "^0.8.9",
+    "html2canvas": "^1.0.0-rc.5",
+    "jspdf": "^1.5.3",
+    "lodash": "^4.17.15",
+    "nuxt": "^2.0.0",
+    "qrcode": "^1.4.4",
+    "uuid": "^3.3.3",
+    "vue-qrcode-reader": "^2.1.1"
+  }
+}
