@@ -9,9 +9,9 @@
         </div>-->
         <div class="media-content">
           <b-icon icon="seed-outline" class="is-centered-block" />
-          <br/>
-          <p class="title is-4 has-text-centered">{{bag.species}}</p>
-          <p class="subtitle has-text-centered">{{bag.code}}</p>
+          <br />
+          <p class="title is-4 has-text-centered">{{bag.code}}</p>
+          <p class="subtitle has-text-centered">{{bag.species}}</p>
           <!-- <p class="subtitle is-6">@johnsmith</p> -->
         </div>
       </div>
@@ -22,9 +22,8 @@
           <li></li>
         </ul>-->
 
-        <img class="is-centered-block" :src="QRData" alt="bag QR code" />
-
         <nuxt-link :to="{name:'bags-show', params:{show:bag.code}}" class="button is-fullwidth">Open</nuxt-link>
+        
       </div>
     </div>
   </div>
@@ -34,19 +33,7 @@
 import QRCode from "qrcode";
 
 export default {
-  props: ["bag"],
-  data: function() {
-    return {
-      QRData: ""
-    };
-  },
-  created: async function() {
-    try {
-      this.QRData = await QRCode.toDataURL(this.bag.id);
-    } catch (err) {
-      console.error(err);
-    }
-  }
+  props: ["bag"]
 };
 </script>
 

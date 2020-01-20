@@ -1,8 +1,8 @@
 <template>
-  <b-navbar :mobile-modal="false" wrapper-class="container">
+  <b-navbar :mobile-modal="false" wrapper-class="container" type='is-primary'>
     <template slot="brand">
       <b-navbar-item tag="router-link" :to="{ path: '/' }">
-        <strong class="has-text-primary">Whats In The Box!?</strong>
+        <strong>Whats In The Box!?</strong>
         <!-- <img
             src="https://raw.githubusercontent.com/buefy/buefy/dev/static/img/buefy-logo.png"
             alt="Lightweight UI components for Vue.js based on Bulma"
@@ -19,12 +19,13 @@
                     Contact
                 </b-navbar-item>
       </b-navbar-dropdown>-->
-    </template>
 
-    <template slot="end">
       <b-navbar-item class="no-hover" v-if="this.$auth.loggedIn">
         <Search />
       </b-navbar-item>
+    </template>
+
+    <template slot="end">
 
       <b-navbar-item tag="div" v-if="!this.$auth.loggedIn">
         <div class="buttons">
@@ -35,7 +36,6 @@
         </div>
       </b-navbar-item>
       <b-navbar-dropdown :label="this.$auth.user.username" v-if="this.$auth.loggedIn">
-        <!-- <b-navbar-item href="#">About</b-navbar-item> -->
         <b-navbar-item href="#" @click="logOut">Log out</b-navbar-item>
       </b-navbar-dropdown>
     </template>
@@ -62,6 +62,6 @@ export default {
 .no-hover:hover,
 .no-hover:focus,
 .no-hover:focus-within {
-  background-color: inherit;
+  background-color: inherit !important;
 }
 </style>

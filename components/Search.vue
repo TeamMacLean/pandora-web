@@ -15,7 +15,7 @@
           <div class="level-item">
             <b-icon icon="seed-outline" size="is-medium" />
             <span />
-            <strong>{{ props.option.species }}</strong>
+            <strong>{{ props.option.species }} {{ props.option.accession }}</strong>
           </div>
         </div>
         <div class="level-right">

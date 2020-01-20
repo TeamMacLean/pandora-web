@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="card" @click="onClick">
     <div class="card-content">
       <div class="media">
         <!-- <div class="media-left">
@@ -9,9 +9,8 @@
         </div>-->
         <div class="media-content">
           <p class="title is-4 has-text-centered">
-            <b-icon icon="package-variant-closed" class="is-centered-block"/>
-          <br/>
-            #{{box.code}}
+            <b-icon icon="package-variant-closed" />
+            {{box.code}}
           </p>
           <!-- <p class="subtitle is-6">@johnsmith</p> -->
         </div>
@@ -21,39 +20,23 @@
         <!-- <ul>
           <li></li>
           <li></li>
-        </ul> -->
+        </ul>-->
 
-        <img class="is-centered-block" :src="QRData" alt="box QR code" />
+        <!-- <img class="is-centered-block" :src="QRData" alt="box QR code" /> -->
 
-        <nuxt-link :to="{name:'boxes-show', params:{show:box.code}}" class="button is-fullwidth">Open</nuxt-link>
+        <nuxt-link
+          :to="{name:'boxes-show', params:{show:box.code}}"
+          class="button is-fullwidth"
+        >Open</nuxt-link>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import QRCode from "qrcode";
+// import QRCode from "qrcode";
 
 export default {
-  props: ["box"],
-  data: function() {
-    return {
-      QRData: ""
-    };
-  },
-  created: async function() {
-    try {
-      this.QRData = await QRCode.toDataURL(this.box.id);
-    } catch (err) {
-      console.error(err);
-    }
-  }
+  props: ["box"]
 };
 </script>
-
-<style scoped>
-.is-centered-block {
-  display: block;
-  margin: 0 auto;
-}
-</style>

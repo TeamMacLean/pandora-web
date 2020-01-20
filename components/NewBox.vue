@@ -7,7 +7,7 @@
     <b-field label="Shelf">
       <b-input v-model="shelf" type="number" min="0" required></b-input>
     </b-field>
-    <button type="submit" class="button is-success is-fullwidth">Create box</button>
+    <b-button native-type="submit" type="is-success" class="button is-fullwidth" icon-left="check">Create box</b-button>
   </form>
 </template>
 

@@ -2,9 +2,12 @@
   <form @submit.prevent="postForm">
     <h2 class="title is-5">New bag</h2>
     <b-field label="Species">
-      <b-input v-model="species" minlength="3" required></b-input>
+      <b-input v-model="species" minlength="4" required></b-input>
     </b-field>
-    <button type="submit" class="button is-success is-fullwidth">Create bag</button>
+    <b-field label="Accession">
+      <b-input v-model="accession" minlength="4" required></b-input>
+    </b-field>
+    <b-button native-type="submit" class="button is-success is-fullwidth" icon-left="check">Create bag</b-button>
   </form>
 </template>
 
@@ -13,19 +16,20 @@ export default {
   props: ["box"],
   data() {
     return {
-      species: null
+      species: null,
+      accession: null
     };
   },
   methods: {
     postForm() {
       this.$axios
-        .post("/bags/new", { boxID: this.box._id, species: this.species })
+        .post("/bags/new", { boxID: this.box._id, species: this.species, accession: this.accession })
         .then(result => {
           this.$buefy.toast.open({
             message: "Bag created!",
             type: "is-success"
           });
-          this.$emit('onComplete')
+          this.$emit("onComplete");
         })
         .catch(err => {
           console.error(err);
