@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-modal :active.sync="isLogModalActive" :width="320" scroll="keep">
-      <NewLog :bag="bag" />
+      <NewLog :bag="bag" @onComplete="onComplete" />
     </b-modal>
     <section class="section">
       <div class="container">
@@ -24,14 +24,45 @@
 
         <br />
         <p class="is-size-5">{{bag.accession}}</p>
-        <nuxt-link :to="{name: 'boxes-show', params: { show: bag.box.code }}">
-          <p class="is-size-5">
+
+        <p class="is-size-5">
+          <nuxt-link :to="{name: 'boxes-show', params: { show: bag.box.code }}">
             <b-icon icon="package-variant" />
             {{bag.box.code}}
-          </p>
-        </nuxt-link>
+          </nuxt-link>
+        </p>
 
         <p class="is-size-5">Created by: {{bag.createdBy}}</p>
+        <p class="is-size-5">Created at: {{moment(bag.createdAt).calendar()}}</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div v-if="bag.logs">
+          <div v-for="log in bag.logs" :key="log._id">
+            <div class="card">
+              <div class="card-content">
+                <div class="level">
+                  <div class="level-left">
+                    <!-- <div class="level-item"> -->
+                    <!-- <b-icon icon="seed-outline" class="is-centered-block" /> -->
+                    <!-- </div> -->
+                    <div class="level-item">
+                      <span>
+                        <strong>{{log.all ? 'all' : log.count}}</strong> taken by
+                        <strong>{{log.by}}</strong>
+                        on
+                        {{moment(log.createdAt).calendar()}}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br />
+          </div>
+        </div>
       </div>
     </section>
   </div>
@@ -85,10 +116,10 @@ export default {
         });
     },
     onComplete() {
+      console.log("on complete");
       this.isLogModalActive = false;
       this.refreshbag();
     }
-  
   }
 };
 </script>

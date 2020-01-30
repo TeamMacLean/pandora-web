@@ -7,7 +7,14 @@
     <b-field label="Accession">
       <b-input v-model="accession" minlength="4" required></b-input>
     </b-field>
-    <b-button native-type="submit" class="button is-success is-fullwidth" icon-left="check">Create bag</b-button>
+    <b-field label="Shot Name" message="this will be used to generate the ID">
+      <b-input v-model="shortName" minlength="4" required></b-input>
+    </b-field>
+    <b-button
+      native-type="submit"
+      class="button is-success is-fullwidth"
+      icon-left="check"
+    >Create bag</b-button>
   </form>
 </template>
 
@@ -17,13 +24,19 @@ export default {
   data() {
     return {
       species: null,
-      accession: null
+      accession: null,
+      shortName
     };
   },
   methods: {
     postForm() {
       this.$axios
-        .post("/bags/new", { boxID: this.box._id, species: this.species, accession: this.accession })
+        .post("/bags/new", {
+          boxID: this.box._id,
+          species: this.species,
+          accession: this.accession,
+          shortName: this.shortName
+        })
         .then(result => {
           this.$buefy.toast.open({
             message: "Bag created!",

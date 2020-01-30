@@ -30,7 +30,6 @@
 </template>
 
 <script>
-import QRCode from "qrcode";
 
 export default {
   props: ["bag"]

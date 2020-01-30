@@ -25,6 +25,7 @@
         <p class="is-size-5">Bay: {{box.bay}}</p>
         <p class="is-size-5">Shelf: {{box.shelf}}</p>
         <p class="is-size-5">Created by: {{box.createdBy}}</p>
+        <p class="is-size-5">Created at: {{moment(box.createdAt).calendar()}}</p>
       </div>
     </section>
     <section class="section">
@@ -40,32 +41,29 @@
         <div class="is-clearfix" />
         <br />
         <div v-if="box.bags">
-          <div
-            v-for="bag in box.bags"
-            :key="bag.code"
-            class="card is-button"
-            @click="onBagClick(bag.code)"
-          >
-            <div class="card-content">
-              <div class="level">
-                <div class="level-left">
-                  <div class="level-item">
-                    <b-icon icon="seed-outline" class="is-centered-block" />
+          <div v-for="bag in box.bags" :key="bag.code" @click="onBagClick(bag.code)">
+            <div class="card is-button">
+              <div class="card-content">
+                <div class="level">
+                  <div class="level-left">
+                    <div class="level-item">
+                      <b-icon icon="seed-outline" class="is-centered-block" />
+                    </div>
+                    <div class="level-item">
+                      <strong>{{bag.species}}</strong>
+                    </div>
+                    <div class="level-item">
+                      <strong>{{bag.accession}}</strong>
+                    </div>
                   </div>
-                  <div class="level-item">
-                    <strong>{{bag.species}}</strong>
-                  </div>
-                  <div class="level-item">
-                    <strong>{{bag.accession}}</strong>
-                  </div>
-                </div>
 
-                <div class="level-right">
-                  <div class="level-item">{{bag.code}}</div>
+                  <div class="level-right">
+                    <div class="level-item">{{bag.code}}</div>
+                  </div>
                 </div>
               </div>
             </div>
-            <!-- <hr /> -->
+            <br />
           </div>
         </div>
       </div>
@@ -79,6 +77,7 @@
 
 import NewBag from "~/components/NewBag";
 import BagCard from "~/components/BagCard";
+
 export default {
   middleware: "auth",
   components: { NewBag, BagCard },
@@ -90,7 +89,7 @@ export default {
           // res.data.project.samples = [];
           return {
             isNewBagModalActive: false,
-            box: res.data.box,
+            box: res.data.box
           };
         } else {
           error({ statusCode: 501, message: "Box not found" });
@@ -126,7 +125,7 @@ export default {
     onComplete() {
       this.isNewBagModalActive = false;
       this.refreshBox();
-    },
+    }
     // printLabel() {
     //   return;
     //   var labelDiv = document.getElementById("label");

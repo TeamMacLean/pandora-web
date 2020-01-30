@@ -25,8 +25,7 @@ export default {
   props: ["bag"],
   data() {
     return {
-      count: null,
-      bag: null
+      count: null
     };
   },
   methods: {
@@ -41,6 +40,7 @@ export default {
                 message: "Log created!",
                 type: "is-success"
               });
+              console.log('PRE 2 on complete');
               this.$emit("onComplete");
             })
             .catch(err => {
@@ -65,6 +65,8 @@ export default {
                 message: "Log created!",
                 type: "is-success"
               });
+              console.log('PRE 1 on complete');
+              this.$emit("onComplete");
             })
             .catch(err => {
               console.error(err);

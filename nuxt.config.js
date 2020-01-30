@@ -38,12 +38,12 @@ export default {
   ** Global CSS
   */
   css: [
-    '@/assets/custom.sass',
+    '@/assets/buefy.scss',
   ],
   /*
   ** Plugins to load before mounting the App
   */
-  plugins: [{ src: '~/plugins/buefy', ssr: false }],
+  plugins: [{ src: '~/plugins/buefy', ssr: false }, { src: '~/plugins/moment', ssr: false }],
   /*
   ** Nuxt.js dev-modules
   */
@@ -63,7 +63,7 @@ export default {
      */
   router: {
     routeNameSplitter: '-',
-    linkExactActiveClass: '-active nuxt-link-exact-active'
+    // linkExactActiveClass: '-active nuxt-link-exact-active'
   },
   /*
   ** Axios module configuration
