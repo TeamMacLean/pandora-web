@@ -25,7 +25,7 @@ export default {
     return {
       species: null,
       accession: null,
-      shortName
+      shortName: null
     };
   },
   methods: {
