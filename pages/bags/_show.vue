@@ -23,14 +23,15 @@
         <div class="is-clearfix" />
 
         <br />
-        <p class="is-size-5">{{bag.accession}}</p>
-
-        <p class="is-size-5">
+         <p class="is-size-5">
           <nuxt-link :to="{name: 'boxes-show', params: { show: bag.box.code }}">
             <b-icon icon="package-variant" />
             {{bag.box.code}}
           </nuxt-link>
         </p>
+        
+        <p class="is-size-5">Accession: {{bag.accession}}</p>
+        <p class="is-size-5">ID: {{bag.code}}</p>
 
         <p class="is-size-5">Created by: {{bag.createdBy}}</p>
         <p class="is-size-5">Created at: {{moment(bag.createdAt).calendar()}}</p>
