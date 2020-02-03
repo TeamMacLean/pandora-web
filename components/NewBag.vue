@@ -7,7 +7,7 @@
     <b-field label="Accession">
       <b-input v-model="accession" minlength="4" required></b-input>
     </b-field>
-    <b-field label="Shot Name" message="this will be used to generate the ID">
+    <b-field label="Short Name" message="this will be used to generate the ID">
       <b-input v-model="shortName" minlength="4" required></b-input>
     </b-field>
     <b-button
