@@ -2,7 +2,7 @@
   <b-navbar :mobile-modal="false" wrapper-class="container" type='is-primary'>
     <template slot="brand">
       <b-navbar-item tag="router-link" :to="{ path: '/' }">
-        <strong>Whats In The Box!?</strong>
+        <strong>Pandora</strong>
         <!-- <img
             src="https://raw.githubusercontent.com/buefy/buefy/dev/static/img/buefy-logo.png"
             alt="Lightweight UI components for Vue.js based on Bulma"
