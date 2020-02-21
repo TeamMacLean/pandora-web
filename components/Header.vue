@@ -29,7 +29,6 @@
 
       <b-navbar-item tag="div" v-if="!this.$auth.loggedIn">
         <div class="buttons">
-          <!-- <p>{{this.$store.user}}</p> -->
           <nuxt-link class="button is-primary" :to="{ path: '/signin' }">
             <strong>Log in</strong>
           </nuxt-link>

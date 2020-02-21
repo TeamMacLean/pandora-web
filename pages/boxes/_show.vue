@@ -41,30 +41,17 @@
         <div class="is-clearfix" />
         <br />
         <div v-if="box.bags">
-          <div v-for="bag in box.bags" :key="bag.code" @click="onBagClick(bag.code)">
-            <div class="card is-button">
-              <div class="card-content">
-                <div class="level">
-                  <div class="level-left">
-                    <div class="level-item">
-                      <b-icon icon="seed-outline" class="is-centered-block" />
-                    </div>
-                    <div class="level-item">
-                      <strong>{{bag.species}}</strong>
-                    </div>
-                    <div class="level-item">
-                      <strong>{{bag.accession}}</strong>
-                    </div>
-                  </div>
-
-                  <div class="level-right">
-                    <div class="level-item">{{bag.code}}</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <br />
-          </div>
+          <b-table :data="tableData">
+            <template slot-scope="props">
+              <b-table-column field="id" label="ID">
+                <nuxt-link :to="{name: 'bags-show', params:{show:props.row.id}}">{{ props.row.id }}</nuxt-link>
+              </b-table-column>
+              <b-table-column field="entry" label="Entry">{{ props.row.entry }}</b-table-column>
+              <b-table-column field="species" label="Species">{{ props.row.species }}</b-table-column>
+              <b-table-column field="bay" label="Bay">{{ props.row.bay }}</b-table-column>
+              <b-table-column field="shelf" label="Shelf">{{ props.row.shelf }}</b-table-column>
+            </template>
+          </b-table>
         </div>
       </div>
     </section>
@@ -81,6 +68,34 @@ import BagCard from "~/components/BagCard";
 export default {
   middleware: "auth",
   components: { NewBag, BagCard },
+  data() {
+    return {
+      isNewBagModalActive: false,
+      tableColumns: [
+        {
+          field: "id",
+          label: "Identification number"
+        },
+        {
+          field: "entry",
+          label: "Entry"
+        },
+        {
+          field: "species",
+          label: "Species"
+        },
+
+        {
+          field: "bay",
+          label: "Bay"
+        },
+        {
+          field: "shelf",
+          label: "Shelf"
+        }
+      ]
+    };
+  },
   asyncData({ route, $axios, error, store }) {
     return $axios
       .get("/box", { params: { code: route.params.show } })
@@ -88,7 +103,6 @@ export default {
         if (res.status === 200 && res.data.box) {
           // res.data.project.samples = [];
           return {
-            isNewBagModalActive: false,
             box: res.data.box
           };
         } else {
@@ -99,6 +113,23 @@ export default {
         console.error(err);
         error({ statusCode: 501, message: "Box not found" });
       });
+  },
+  computed: {
+    tableData() {
+      if (this.box) {
+        return this.box.bags.map(bag => {
+          return {
+            id: bag.code,
+            entry: bag.createdBy,
+            species: bag.species,
+            bay: this.box.bay,
+            shelf: this.box.shelf
+          };
+        });
+      } else {
+        return [];
+      }
+    }
   },
   methods: {
     refreshBox() {

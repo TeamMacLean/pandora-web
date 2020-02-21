@@ -23,13 +23,13 @@
         <div class="is-clearfix" />
 
         <br />
-         <p class="is-size-5">
+        <p class="is-size-5">
           <nuxt-link :to="{name: 'boxes-show', params: { show: bag.box.code }}">
             <b-icon icon="package-variant" />
             {{bag.box.code}}
           </nuxt-link>
         </p>
-        
+
         <p class="is-size-5">Accession: {{bag.accession}}</p>
         <p class="is-size-5">ID: {{bag.code}}</p>
 
@@ -85,6 +85,7 @@ export default {
       .then(res => {
         if (res.status === 200 && res.data.bag) {
           // res.data.project.samples = [];
+          console.log(res.data.bag);
           return {
             isLogModalActive: false,
             isNewBagModalActive: false,
