@@ -1,5 +1,5 @@
 <template>
-  <div class="card" @click="onClick">
+  <div class="card">
     <div class="card-content">
       <div class="media">
         <!-- <div class="media-left">
