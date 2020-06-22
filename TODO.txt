@@ -1,0 +1,92 @@
+STEPS
+
+species in database
+    - link species ID to bags
+        + can one add a species reference to a new bag entry?
+
+SORT
+test if these operations fail (by removing sequence collection?)
+in target db, create 'species' collection
+
+autocompletion features
+    - on new bag page, get species list, and update redux store, then display species list
+    - use an autocomplete field in modal
+    - show species list in autocomplete field only
+    - cannot enter unknown species (CAN'T try with 0, so try with 1)
+        + is UX here clear?
+    - manually 'inactive-delete' all species
+    - cannot submit if 0 species available 
+        (just set as required - required message could be contact your admin)
+        + disable at least one upload/key button
+        + error/warning text that an admin must add at least 1 species
+    - re-enable 2 species
+    - successfully select either species (2 runs)
+    - form submit updates database
+        + probably DONT need to update redux store, but use redux action?
+
+admin area
+    - put deeks, mpage as admins on .env
+        + ask Martin who other admins are and add them
+            ~ ask ruud
+    - update .env.example with bad admins
+    - if admin, then admin panel on header (deeks: admin, logout), which takes you to admin page
+    - admin page/URL only accessible if admin
+
+list species in admin area
+    - on admin page, refresh species list (including through redux store) and get them to display 
+        + (cf. lke you did earlier)
+    - list all species, 
+        + get raw list
+        + get them component-ised
+            ~ copy Datahogbeta/admin ?
+            ~ NB add x next to them soon
+    - button to add another
+        + modal with for that has all inputs (see similar example when adding new box)
+        + stop any duplicates being added
+    - rename function is a cut/paste job from add new (optional)
+    - add X next to them
+        + get delete to actually delete them
+    - format long list / filter
+        + any simple formatting, e.g. 12 entries to a row (use Martin's tip or just endless columns)
+        + if this looks too long, put a filter search list in
+            ~ find it in buefy, see how it works
+            ~ test it how you'd expect to use it, add a note on webpage if necessary
+WONT DO: delete all button for list species, upload species from file/json
+
+*) testing script, run through beforehand (NB copy/paste this list to Martin demo then staged demo):
+    - SETUP: add ~10 species (until formatting is clear)
+    - new submit: autocompletes; cannot submit false species
+    - new submit: can submit either species
+    - access admin area + show filter
+    - admin area: delete all species
+    - new submit: cannot submit if 0 species(, cannot submit false species)
+    - admin area: add 2 species
+    - admin area: cannot add duplicate species
+    - db: has an accurate record of just 2 species
+    - logout, remove yourself as admin, login again, cannot now access admin area
+*) give Martin a demo
+*) send screenshots of work to Ruud, await replyjoasdf, ask for admin in config
+*) (optional) one-off data insert script (see komondor-next from martin's work?)
+---
+*) login to multiapp server
+*) deploy changes
+    - N.B. for BOTH sites:
+    - ensure .env file properly copied
+*) go to real site
+*) test: 
+    - how does the site work with 0 species? if user tries to force an unknown species?
+*) go to real admin panel
+*) ensure base list of species on system
+    - check existing species (especially object type)
+    - add 1 species, check against existing
+    - delete existing types OR use to check add duplicate feature
+    - manually add 89 species OR deploy script
+*) test the features work remotely (please add list below)
+
+DONE
+species in database
+    - create species collection in database; add/remove
+        + name, ID, isActive
+        + delete sequence only does an update database
+        + create new sequence, 
+            § if sequence name exists, do an update on existing sequence
