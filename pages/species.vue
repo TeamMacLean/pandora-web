@@ -4,7 +4,7 @@
       <div class="container">
         <div class="is-pulled-left">
           <h2 class="title">Species</h2>
-          <h4><i>Use browser find command to search current list of species</i></h4>
+          <h4><i>Use browser find command to search current list of species.</i></h4>
         </div>
         <div class="is-pulled-right">
 
