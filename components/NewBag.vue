@@ -16,7 +16,7 @@
           <template slot="empty">No results found</template>
         </b-autocomplete>
       </b-field>
-      <p class="content"><b>Selected Sequence:</b> {{ selectedSequence || 'None selected' }}</p>
+      <p class="content"><b>Selected Species:</b> {{ selectedSpecies || 'None selected' }}</p>
     </section>
     <br>
     <b-field label="Accession">
@@ -36,33 +36,32 @@
 
 <script>
 export default {
-  // TODO see if sequences can be not passed down as prop
-  props: ["box", "sequences"],
+  // TODO see if species can be not passed down as prop
+  props: ["box", "fullSpeciesList"],
   data() {
     return {
-      // TODO rename selectedSequence to species or selectedSpecies
-      selectedSequence: null,
+      selectedSpecies: null,
       accession: null,
       shortName: null,
       selectSpeciesUserSearchText: ''
     };
   },
   fetch({ store }) {
-    return store.dispatch("refreshSequences");
+    return store.dispatch("refreshSpecies");
   },
   computed: {
     isSubmitDisabled() {
-      if (!this.selectedSequence || !this.accession || this.accession.length < 4){
+      if (!this.selectedSpecies || !this.accession || this.accession.length < 4){
         return true;
       } else {
         return false;
       }
     },
-    activeSequenceNames() {
-      return this.sequences.filter(seq => seq.isActive).map(seq => seq.name);
+    activeSpeciesList() {
+      return this.fullSpeciesList.filter(spe => spe.isActive).map(spe => spe.name);
     },
     filteredDataArray() {
-      return this.activeSequenceNames.filter((option) => {
+      return this.activeSpeciesList.filter((option) => {
           return option
               .toString()
               .toLowerCase()
@@ -73,15 +72,15 @@ export default {
   },
   methods: {
     onSelectOption(option) {
-      this.selectedSequence = option;
+      this.selectedSpecies = option;
       this.updateShortName();
     },
     updateShortName() {
-      if (!this.selectedSequence){
+      if (!this.selectedSpecies){
         this.shortName = null;
       } else {
         this.$axios
-          .get("/bags/shortname", { params: { species: this.selectedSequence } })
+          .get("/bags/shortname", { params: { species: this.selectedSpecies } })
           .then(response => {
             if (response.data && response.data.code) {
               this.shortName = response.data.code;
@@ -96,8 +95,8 @@ export default {
       this.$axios
         .post("/bags/new", {
           boxID: this.box._id,
-          // TODO remove selectedSequence, it should be called species
-          species: this.selectedSequence,
+          // TODO remove selectedSpecies, it should be called species
+          species: this.selectedSpecies,
           accession: this.accession
         })
         .then(result => {

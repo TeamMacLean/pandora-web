@@ -4,7 +4,7 @@ export const state = () => ({
     user: null,//{ username: 'pagem' },
     boxes: [],
     bags: [],
-    sequences: [],
+    species: [],
 })
 
 export const mutations = {
@@ -23,15 +23,15 @@ export const mutations = {
     addBagToState(state, bag) {
         state.bags.push(bag)
     },
-    setSequencesState(state, sequences) {
-        state.sequences = sequences;
+    setSpeciesState(state, species) {
+        state.species = species;
     },
-    addSequenceToState(state, sequence) {
-        state.sequences.push(sequence)
+    addSpeciesToState(state, species) {
+        state.species.push(species)
     },
-    updateSequenceStatusInState(state, { modifiedSequenceId, newIsActiveValue }) {
-        const targetIndex = state.sequences.findIndex(seq => seq.id === modifiedSequenceId);
-        state.sequences[targetIndex].isActive = newIsActiveValue;
+    updateSpeciesStatusInState(state, { modifiedSpeciesId, newIsActiveValue }) {
+        const targetIndex = state.species.findIndex(spe => spe.id === modifiedSpeciesId);
+        state.species[targetIndex].isActive = newIsActiveValue;
     }
 }
 
@@ -58,31 +58,31 @@ export const actions = {
             })
     },
 
-    async addSequence({ commit }) {
-        return this.$axios.get('/sequences/new')
+    async addSpecies({ commit }) {
+        return this.$axios.get('/species/new')
             .then(({ data }) => {
-                commit('addSequenceToState', data.sequence);
+                commit('addSpeciesToState', data.species);
             })
             .catch(err => {
                 console.error(err);
             })
     },
-    async refreshSequences({ commit }) {
-        return this.$axios.get('/sequences')
+    async refreshSpecies({ commit }) {
+        return this.$axios.get('/species')
             .then(({ data }) => {
-                commit('setSequencesState', data.sequences)
+                commit('setSpeciesState', data.species)
             })
             .catch(err => {
                 console.error(err);
             })
     },
-    async toggleActivateSequence(state, {sequenceId, newStatus}) {
-        return this.$axios.put('/sequence/', {
-            id: sequenceId,
+    async toggleActivateSpecies(state, {speciesId, newStatus}) {
+        return this.$axios.put('/species/', {
+            id: speciesId,
             isActive: newStatus,
         }).then(function (response) {
-            state.commit('updateSequenceStatusInState', {
-                modifiedSequenceId: response.data.id, 
+            state.commit('updateSpeciesStatusInState', {
+                modifiedSpeciesId: response.data.id, 
                 newIsActiveValue: response.data.isActive, 
             })
         }).catch(function (error) {

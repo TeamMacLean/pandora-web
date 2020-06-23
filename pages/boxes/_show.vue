@@ -3,8 +3,8 @@
     <b-modal :active.sync="isNewBagModalActive" :width="320" scroll="keep">
       <div class="card">
         <div class="card-content">
-          <!-- TODO see if we need to pass sequences as props -->
-          <NewBag :sequences="this.$store.state.sequences" :box="box" @onComplete="onComplete" />
+          <!-- TODO see if we need to pass species as props -->
+          <NewBag :fullSpeciesList="this.$store.state.species" :box="box" @onComplete="onComplete" />
         </div>
       </div>
     </b-modal>
@@ -116,7 +116,7 @@ export default {
       });
   },
   fetch({ store }) {
-    return store.dispatch("refreshSequences");
+    return store.dispatch("refreshSpecies");
   },
   computed: {
     tableData() {

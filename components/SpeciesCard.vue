@@ -7,7 +7,7 @@
         aria-close-label="Close tag"
         @close="handleDelete"
       >
-        {{sequence.name}}
+        {{species.name}}
     </b-tag>
   </div>
 </template>
@@ -15,10 +15,10 @@
 <script>
 
 export default {
-  props: ["sequence"],
+  props: ["species"],
   methods: {
     handleDelete() {
-      this.$emit('deactivateSequence', this.sequence.id);
+      this.$emit('deactivateSpecies', this.species.id);
     }
   }
 };

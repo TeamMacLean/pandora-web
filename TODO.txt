@@ -47,9 +47,8 @@ WONT DO:
     - delete all button for list species, upload species from file/json
     - link species ID to bags in database, when making new bag
         + this means you cannot do a system-wide species rename
-    - test if these operations fail (by removing sequence collection?)
+    - test if these operations fail (by removing species collection?)
 
-*) refactor ALL sequences to species
 *) testing script, run through beforehand (NB copy/paste this list to Martin demo then staged demo):
     - SETUP: add ~10 species (until formatting is clear)
     - new submit: autocompletes; cannot submit false species
@@ -84,6 +83,6 @@ DONE
 species in database
     - create species collection in database; add/remove
         + name, ID, isActive
-        + delete sequence only does an update database
-        + create new sequence, 
-            § if sequence name exists, do an update on existing sequence
+        + delete species only does an update database
+        + create new species, 
+            § if species name exists, do an update on existing species

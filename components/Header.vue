@@ -35,7 +35,7 @@
         </div>
       </b-navbar-item>
       <b-navbar-dropdown :label="this.$auth.user.username" v-if="this.$auth.loggedIn">
-        <b-navbar-item v-if="loggedInAdmin" href="/sequences">Edit sequences</b-navbar-item>
+        <b-navbar-item v-if="loggedInAdmin" href="/species">Edit species</b-navbar-item>
         <b-navbar-item href="/#" @click="logOut">Log out</b-navbar-item>
       </b-navbar-dropdown>
     </template>

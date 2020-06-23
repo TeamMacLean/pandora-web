@@ -1,4 +1,4 @@
-PUT http://localhost:3002/sequence
+PUT http://localhost:3002/species
 content-type: application/json
 
 {
