@@ -35,7 +35,8 @@
         </div>
       </b-navbar-item>
       <b-navbar-dropdown :label="this.$auth.user.username" v-if="this.$auth.loggedIn">
-        <b-navbar-item href="#" @click="logOut">Log out</b-navbar-item>
+        <b-navbar-item v-if="loggedInAdmin" href="/sequences">Edit sequences</b-navbar-item>
+        <b-navbar-item href="/#" @click="logOut">Log out</b-navbar-item>
       </b-navbar-dropdown>
     </template>
   </b-navbar>
@@ -54,6 +55,12 @@ export default {
       });
     }
   },
+  computed: {
+    loggedInAdmin() {
+      const admins = process.env.ADMINS.split(',')
+      return admins.includes(this.$auth.user.username);
+    }
+  }
 };
 </script>
 

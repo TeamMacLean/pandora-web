@@ -3,7 +3,8 @@
     <b-modal :active.sync="isNewBagModalActive" :width="320" scroll="keep">
       <div class="card">
         <div class="card-content">
-          <NewBag :box="box" @onComplete="onComplete" />
+          <!-- TODO see if we need to pass sequences as props -->
+          <NewBag :sequences="this.$store.state.sequences" :box="box" @onComplete="onComplete" />
         </div>
       </div>
     </b-modal>
@@ -113,6 +114,9 @@ export default {
         console.error(err);
         error({ statusCode: 501, message: "Box not found" });
       });
+  },
+  fetch({ store }) {
+    return store.dispatch("refreshSequences");
   },
   computed: {
     tableData() {

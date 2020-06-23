@@ -1,13 +1,5 @@
 STEPS
 
-species in database
-    - link species ID to bags
-        + can one add a species reference to a new bag entry?
-
-SORT
-test if these operations fail (by removing sequence collection?)
-in target db, create 'species' collection
-
 autocompletion features
     - on new bag page, get species list, and update redux store, then display species list
     - use an autocomplete field in modal
@@ -51,8 +43,13 @@ list species in admin area
         + if this looks too long, put a filter search list in
             ~ find it in buefy, see how it works
             ~ test it how you'd expect to use it, add a note on webpage if necessary
-WONT DO: delete all button for list species, upload species from file/json
+WONT DO: 
+    - delete all button for list species, upload species from file/json
+    - link species ID to bags in database, when making new bag
+        + this means you cannot do a system-wide species rename
+    - test if these operations fail (by removing sequence collection?)
 
+*) refactor ALL sequences to species
 *) testing script, run through beforehand (NB copy/paste this list to Martin demo then staged demo):
     - SETUP: add ~10 species (until formatting is clear)
     - new submit: autocompletes; cannot submit false species
@@ -65,7 +62,7 @@ WONT DO: delete all button for list species, upload species from file/json
     - db: has an accurate record of just 2 species
     - logout, remove yourself as admin, login again, cannot now access admin area
 *) give Martin a demo
-*) send screenshots of work to Ruud, await replyjoasdf, ask for admin in config
+*) send screenshots of work to Ruud, await reply, ask for admin in config
 *) (optional) one-off data insert script (see komondor-next from martin's work?)
 ---
 *) login to multiapp server
