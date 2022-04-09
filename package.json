@@ -20,7 +20,7 @@
     "@nuxtjs/pwa": "^3.0.0-0",
     "buefy": "^0.8.9",
     "lodash": "^4.17.15",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "node-sass": "^4.13.1",
     "nuxt": "^2.0.0",
     "sass-loader": "^8.0.2",
